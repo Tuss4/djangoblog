@@ -9,4 +9,6 @@ def main(request):
 
 def post(request, single):
 	single = Post.objects.filter(id=single)
+	if not single:
+		raise Http404()
 	return render(request, "post.html", {"post": single})

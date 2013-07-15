@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'posting.views.main'),
+	url(r'^main/$', 'posting.views.main'),
 	url(r'^post/(\d+)/$', 'posting.views.post'),
     # Examples:
     # url(r'^$', 'blog.views.home', name='home'),

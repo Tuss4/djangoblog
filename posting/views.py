@@ -1,6 +1,7 @@
 from django.http import *
 from django.shortcuts import *
 from posting.models import *
+from posting.forms import *
 # Create your views here.
 
 def main(request):
@@ -14,3 +15,9 @@ def post(request, single):
 	if not single:
 		raise Http404()
 	return render(request, "post.html", {"post": single, "comments": disqus_code})
+
+def new_post(request):
+	if request.user.is_authenticated():
+		create = new_post_form
+		return render(request, "new_post.html", {"form": create})
+	raise Http404()

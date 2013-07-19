@@ -3,7 +3,11 @@
 {% for i in post %}
 <h3>{{ i.title}}</h3>
 <p>by {{ i.author }} on {{ i.date }}</p>
-<p>{{ i.post|urlize|linebreaks }}</p>
+<p>
+	<span class="message">
+		{{ i.post|urlize|linebreaks }}
+	</span>
+</p>
 <br />
 {% for c in comments %}
 {{ c|safe }}

@@ -3,7 +3,11 @@
 {% for i in list %}
 <h3><a href="/post/{{ i.id }}">{{ i.title}}</a></h3>
 <p>by {{ i.author }} on {{ i.date }}</p>
-<p>{{ i.post|urlize|linebreaks }}</p>
+<p>
+	<span class="message">
+		{{ i.post|urlize|linebreaks }}
+	</span>
+</p>
 <br />
 {% endfor %}
 {% endblock %}

@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 	url(r'^main/$', 'posting.views.main'),
 	url(r'^post/(\d+)/$', 'posting.views.post'),
     url(r'^new/$', 'posting.views.new_post'),
+    url(r'^post_success/$', 'posting.views.post_success'),
     # Examples:
     # url(r'^$', 'blog.views.home', name='home'),
     # url(r'^blog/', include('blog.foo.urls')),

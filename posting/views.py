@@ -2,6 +2,7 @@ from django.http import *
 from django.shortcuts import *
 from posting.models import *
 from posting.forms import *
+import datetime
 # Create your views here.
 
 def main(request):
@@ -21,3 +22,8 @@ def new_post(request):
 		create = new_post_form
 		return render(request, "new_post.html", {"form": create})
 	raise Http404()
+
+def post_success(request):
+	newPost = Post(title=request.POST.get('title'), date=datetime.datetime.now(), author=request.user.username, post=request.POST.get('post') )
+	newPost.save()
+	return HttpResponseRedirect("/main/")

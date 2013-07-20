@@ -19,7 +19,7 @@ class Comment(models.Model):
 	actual_post = models.ForeignKey(Post)
 
 	def __unicode__(self):
-		return self.author
+		return u'%s: %s by %s' % (self.actual_post, self.comment, self.author)
 
 	class Meta:
 		ordering = ["-id"]

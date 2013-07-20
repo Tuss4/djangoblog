@@ -9,9 +9,19 @@
 	</span>
 </p>
 <br />
-{% for c in comments %}
-{{ c|safe }}
 {% endfor %}
+{% if comments %}
+<h4>Comments</h4>
+{% for comment in comments%}
+<p>{{ comment.author }} commented on {{ comment.date }}:</p>
+<p>{{ comment.comment|linebreaks }}</p>
 {% endfor %}
+{% endif %}
+<h4>Submit a comment:</h4>
+<form action="" method="POST">
+	{{ comment_form.as_p }}
+	{% csrf_token %}
+	<input type="submit" value="Post Comment!" />
+</form>
 
 {% endblock %}

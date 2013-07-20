@@ -22,8 +22,6 @@ def post(request, single):
 	single = Post.objects.filter(id=single)
 	comment_form = submit_comment
 	post_comments = None 
-	if Comment.objects.filter(actual_post=single[0]):
-		post_comments = Comment.objects.filter(actual_post=single)
 	if request.method == "POST":
 		new_comment = Comment(
 			author=request.POST.get('name'), 
@@ -33,6 +31,8 @@ def post(request, single):
 			actual_post=single[0])
 		new_comment.save()
 		HttpResponseRedirect("")
+	if Comment.objects.filter(actual_post=single[0]):
+		post_comments = Comment.objects.filter(actual_post=single)
 	if not single:
 		raise Http404()
 	return render(request, "post.html", {"post": single, "comment_form": comment_form, "comments": post_comments})

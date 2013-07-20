@@ -3,11 +3,20 @@ from django.shortcuts import *
 from posting.models import *
 from posting.forms import *
 import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def main(request):
 	list_of_posts = Post.objects.all()
-	return render(request, "post_list.html", {"list": list_of_posts})
+	paginator = Paginator(list_of_posts, 3)
+	page = request.GET.get('page')
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+	return render(request, "post_list.html", {"list": posts})
 
 def post(request, single):
 	single = Post.objects.filter(id=single)

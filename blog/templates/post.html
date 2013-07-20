@@ -11,7 +11,7 @@
 <br />
 {% endfor %}
 {% if comments %}
-<h4>Comments</h4>
+<h4>Comments ({{ comments|length }})</h4>
 {% for comment in comments%}
 <p>{{ comment.author }} commented on {{ comment.date }}:</p>
 <p>{{ comment.comment|linebreaks }}</p>

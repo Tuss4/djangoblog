@@ -20,17 +20,19 @@ def main(request):
 
 def post(request, single):
 	single = Post.objects.filter(id=single)
-	comment_form = submit_comment()
+	comment_form = submit_comment(request.POST)
 	post_comments = None 
 	if request.method == "POST":
-		new_comment = Comment(
-			author=request.POST.get('name'), 
-			date=datetime.datetime.now(), 
-			email=request.POST.get('email'), 
-			comment=request.POST.get('message'), 
-			actual_post=single[0])
-		new_comment.save()
-		HttpResponseRedirect("")
+		if comment_form.is_valid():
+			clean_data = comment_form.cleaned_data
+			new_comment = Comment(
+				author=clean_data['name'], 
+				date=datetime.datetime.now(), 
+				email=clean_data['email'], 
+				comment=clean_data['message'], 
+				actual_post=single[0])
+			new_comment.save()
+			HttpResponseRedirect("")
 	if Comment.objects.filter(actual_post=single[0]):
 		post_comments = Comment.objects.filter(actual_post=single)
 	if not single:

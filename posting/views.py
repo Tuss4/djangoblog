@@ -20,7 +20,7 @@ def main(request):
 
 def post(request, single):
 	single = Post.objects.filter(id=single)
-	comment_form = submit_comment
+	comment_form = submit_comment()
 	post_comments = None 
 	if request.method == "POST":
 		new_comment = Comment(
@@ -39,7 +39,7 @@ def post(request, single):
 
 def new_post(request):
 	if request.user.is_authenticated():
-		create = new_post_form
+		create = new_post_form()
 		return render(request, "new_post.html", {"form": create})
 	raise Http404()
 

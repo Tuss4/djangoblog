@@ -46,6 +46,10 @@ def new_post(request):
 	raise Http404()
 
 def post_success(request):
-	newPost = Post(title=request.POST.get('title'), date=datetime.datetime.now(), author=request.user.username, post=request.POST.get('post') )
+	newPost = Post(
+		title=request.POST.get('title'), 
+		date=datetime.datetime.now(), 
+		author=request.user.username, 
+		post=request.POST.get('post') )
 	newPost.save()
 	return HttpResponseRedirect("/main/")

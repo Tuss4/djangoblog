@@ -6,5 +6,5 @@ class new_post_form(forms.Form):
 
 class submit_comment(forms.Form):
 	name = forms.CharField(max_length=30)
-	email = forms.EmailField()
+	email = forms.EmailField(required=False)
 	message = forms.CharField(widget=forms.Textarea)

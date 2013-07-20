@@ -32,6 +32,7 @@ def post(request, single):
 			comment=request.POST.get('message'), 
 			actual_post=single[0])
 		new_comment.save()
+		HttpResponseRedirect("")
 	if not single:
 		raise Http404()
 	return render(request, "post.html", {"post": single, "comment_form": comment_form, "comments": post_comments})

@@ -13,3 +13,11 @@
 		color: #0099FF;
 		text-decoration: none;
 	}
+	#footer {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #FFF;
+		text-align: center;
+	}
